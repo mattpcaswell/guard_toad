@@ -38,6 +38,11 @@ defmodule GuardToad.Plug do
     true
   end
 
-  def authenticate_ldap("test", "pass"), do: :ok
-  def authenticate_ldap(_user, _pass),  do: :fail
+  def authenticate_ldap(user, pass)  do
+    serveraddr = "1.2.3.4"
+    port = 43
+    ssl = false
+
+    {:ok, connection} = Exldap.connect(serveraddr, port, ssl, user, pass)
+  end
 end
