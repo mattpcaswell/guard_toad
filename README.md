@@ -2,7 +2,7 @@
 
 GUARD TOAD
 
-![Guard Toad](guard_load.jpeg)
+![Guard Toad](https://github.com/mattpcaswell/guard_toad/blob/main/guard_toad.jpeg?raw=true)
 
 It's a webserver with LDAP authentication for some or all of it's content. Inspired by [sauth](https://github.com/Granitosaurus/sauth)
 
