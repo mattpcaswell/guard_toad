@@ -6,7 +6,7 @@ GUARD TOAD
 
 It's a webserver with LDAP authentication for some or all of it's content. Inspired by [sauth](https://github.com/Granitosaurus/sauth)
 
-Built with Bandit and Plug
+Built with Bandit, Plug, and Exldap
 
 ## Installation
 
