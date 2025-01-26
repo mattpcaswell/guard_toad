@@ -3,6 +3,7 @@ defmodule GuardToad.Plug do
 
   plug Plug.Logger
   plug :add_index_to_path
+  plug :authenticate
   plug Plug.Static, 
     at: "/",
     from: :guard_toad
@@ -19,4 +20,24 @@ defmodule GuardToad.Plug do
       conn
     end
   end
+
+  def authenticate(conn, _) do
+    if req_needs_auth(conn) do
+      with {user, pass} <- Plug.BasicAuth.parse_basic_auth(conn),
+        :ok <- authenticate_ldap(user, pass) do
+        conn
+      else
+        _ -> conn |> Plug.BasicAuth.request_basic_auth() |> halt()
+      end
+    else
+      conn
+    end
+  end
+
+  def req_needs_auth(conn) do
+    true
+  end
+
+  def authenticate_ldap("test", "pass"), do: :ok
+  def authenticate_ldap(_user, _pass),  do: :fail
 end
